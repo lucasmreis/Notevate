@@ -32,3 +32,7 @@ local.properties
 #
 node_modules/
 npm-debug.log
+
+# Key
+#
+android/app/notevate-release-key.keystore

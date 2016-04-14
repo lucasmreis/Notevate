@@ -9,6 +9,8 @@
     "async-csp": "^0.3.0",
     "react": "^0.14.7",
     "react-native": "^0.22.2",
+    "react-native-device-info": "^0.9.1",
+    "react-native-fabric": "^0.1.0",
     "react-native-keyboard-spacer": "^0.1.4",
     "swipe-actions": "^1.1.0"
   }

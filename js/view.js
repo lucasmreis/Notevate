@@ -2,6 +2,8 @@
 
 import type { Action } from './update'
 
+import codePush from "react-native-code-push";
+
 import React, { AsyncStorage } from 'react-native'
 import Channel from 'async-csp'
 
@@ -44,6 +46,7 @@ export default React.createClass({
     }
   },
   async componentDidMount() {
+    codePush.sync();
     const initialState = await this.load()
     this.setState(initialState)
     this.renderLoop()

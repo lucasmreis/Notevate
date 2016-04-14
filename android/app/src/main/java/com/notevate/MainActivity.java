@@ -1,6 +1,7 @@
 package com.notevate;
 
 import com.facebook.react.ReactActivity;
+import com.microsoft.codepush.react.CodePush;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.smixx.fabric.FabricPackage;
 import com.facebook.react.ReactPackage;
@@ -37,8 +38,14 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new CodePush("QHoRBsMFxApvhWCc8pH3WtsEyX-aEJG24JdkW", this, BuildConfig.DEBUG),
             new RNDeviceInfo(),
             new FabricPackage(this)
         );
+    }
+
+    @Override
+    protected String getJSBundleFile() {
+        return CodePush.getBundleUrl();
     }
 }

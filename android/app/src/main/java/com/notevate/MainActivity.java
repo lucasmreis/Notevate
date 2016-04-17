@@ -1,5 +1,10 @@
 package com.notevate;
 
+import android.os.Bundle;
+import android.app.Activity;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
+
 import com.facebook.react.ReactActivity;
 import com.microsoft.codepush.react.CodePush;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -47,5 +52,11 @@ public class MainActivity extends ReactActivity {
     @Override
     protected String getJSBundleFile() {
         return CodePush.getBundleUrl();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
     }
 }

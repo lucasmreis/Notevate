@@ -6,6 +6,8 @@ import React, {
   StyleSheet
 } from 'react-native'
 
+import { Answers } from 'react-native-fabric'
+
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 
 import messages from '../messages'
@@ -38,7 +40,10 @@ export default React.createClass({
     const dispatch = this.props.dispatch
     return (
       <View style={styles.view}>
-        <AddBar onPress={() => this.backHandler()} />
+        <AddBar onPress={() => {
+          this.backHandler()
+          Answers.logCustom('Back To Sentences Button Clicked', {})
+        }} />
 
         <View style={styles.textContainer}>
           <TextInput
@@ -54,7 +59,10 @@ export default React.createClass({
             autoFocus={true} />
         </View>
 
-        <SubmitAction onPress={() => this.addAndGoToPager({ type: 'ADD' })} />
+        <SubmitAction onPress={() => {
+          this.addAndGoToPager({ type: 'ADD' })
+          Answers.logCustom('Sentence Added', {})
+        }} />
 
         <KeyboardSpacer />
       </View>

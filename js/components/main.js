@@ -23,28 +23,33 @@ const onPressRemove = dispatch => () => {
   Answers.logCustom('Sentence Removed', {})
 }
 
-const lowerAction = ({ state, dispatch }) => () => {
-  Answers.logCustom('Remove button clicked', {})
-  Alert.alert(
-    'Remove',
-    'Are you sure?',
-    [
-      { text: 'Cancel', onPress: () => {}, style: 'cancel' },
-      { text: 'OK', onPress: onPressRemove(dispatch) },
-    ]
-  )
+const lowerAction = ({ dispatch }) => ({ sentences }) => {
+  if (sentences && sentences.length > 0) {
+    Answers.logCustom('Remove button clicked', {})
+    Alert.alert(
+      'Remove',
+      'Are you sure?',
+      [
+        { text: 'Cancel', onPress: () => {}, style: 'cancel' },
+        { text: 'OK', onPress: onPressRemove(dispatch) },
+      ]
+    )
+  }
 }
 
-const renderScene = props => ({ screen }, navigator) =>
-  screen === 'add'
+const renderScene = props => ({ screen }, navigator) => {
+  const hasSentence = props.state.sentences && props.state.sentences.length > 0
+  return screen === 'add'
     ? <Add text={props.state.toAdd} dispatch={props.dispatch} navigator={navigator} />
     : <SwipeActions
+        actionParameter={props.state}
         upperNode={upperNode}
-        lowerNode={lowerNode}
+        lowerNode={hasSentence ? lowerNode : null}
         upperAction={upperAction(navigator)}
         lowerAction={lowerAction(props)}>
         <Pager {...props} />
       </SwipeActions>
+}
 
 export default props => (
   <Navigator

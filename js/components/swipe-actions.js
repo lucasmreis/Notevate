@@ -7,6 +7,10 @@ import React, {
   Dimensions
 } from 'react-native';
 
+import Orientation from 'react-native-orientation'
+
+const MAX_Y = 110;
+
 export const between = (x, min, max) =>
   x < min
     ? min
@@ -19,6 +23,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   actionContainer: {
+    height: MAX_Y,
     position: 'absolute',
     left: 0,
     top: 0,
@@ -38,13 +43,11 @@ export default React.createClass({
   },
   getInitialState() {
     return {
-      anim: new Animated.Value(0)
+      anim: new Animated.Value(0),
+      window: Dimensions.get('window')
     };
   },
   componentWillMount() {
-    const window = Dimensions.get('window')
-    const MAX_Y = window.height / 4
-
     const upperAction = this.props.upperAction
       ? this.props.upperAction
       : () => {};
@@ -75,23 +78,22 @@ export default React.createClass({
       }
     });
   },
-  renderAction({ node, topInterpolation, opacityInterpolation }) {
+  renderAction({ window, node, topInterpolation, opacityInterpolation }) {
     if (node) {
       const s = [styles.actionContainer, {
         top: this.state.anim.interpolate(topInterpolation),
         opacity: this.state.anim.interpolate(opacityInterpolation)
       }];
 
-      return (<Animated.View style={[s, {width: Dimensions.get('window').width}]}>
+      return (<Animated.View style={[s, {width: window.width}]}>
         {node}
       </Animated.View>);
     }
     return null;
   },
   renderUpperAction(window) {
-    const MAX_Y = window.height / 4
-
     return this.renderAction({
+      window,
       node: this.props.upperNode,
       topInterpolation: {
         inputRange: [-MAX_Y, 0, MAX_Y],
@@ -104,13 +106,12 @@ export default React.createClass({
     });
   },
   renderLowerAction(window) {
-    const MAX_Y = window.height / 4
-
     return this.renderAction({
+      window,
       node: this.props.lowerNode,
       topInterpolation: {
         inputRange: [-MAX_Y, 0, MAX_Y],
-        outputRange: [window.height - MAX_Y, window.height, window.height + MAX_Y] //  + (MAX_Y / 2)
+        outputRange: [window.height - MAX_Y - 22, window.height, window.height + MAX_Y]
       },
       opacityInterpolation: {
         inputRange: [-MAX_Y, 0.8 * -MAX_Y, 0, MAX_Y],
@@ -119,7 +120,27 @@ export default React.createClass({
     });
   },
   render() {
-    const window = Dimensions.get('window')
+    Orientation.addOrientationListener(o => {
+      const window = Dimensions.get('window')
+      if (o === 'LANDSCAPE') {
+        this.setState({
+          window: {
+            width: Math.max(window.width, window.height) + 7,
+            height: Math.min(window.width, window.height)
+          }
+        })
+      } else {
+        this.setState({
+          window: {
+            width: Math.min(window.width, window.height),
+            height: Math.max(window.width, window.height)
+          }
+        })
+      }
+    })
+
+    const window = this.state.window;
+
     return (
       <View style={styles.container} {...this.panResponder.panHandlers}>
         {this.props.children}

@@ -12,6 +12,10 @@ import com.smixx.fabric.FabricPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 
+import android.content.Intent;
+import android.content.res.Configuration;
+import com.github.yamill.orientation.OrientationPackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,7 +49,8 @@ public class MainActivity extends ReactActivity {
             new MainReactPackage(),
             new CodePush("QHoRBsMFxApvhWCc8pH3WtsEyX-aEJG24JdkW", this, BuildConfig.DEBUG),
             new RNDeviceInfo(),
-            new FabricPackage(this)
+            new FabricPackage(this),
+            new OrientationPackage(this)
         );
     }
 
@@ -58,5 +63,13 @@ public class MainActivity extends ReactActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Intent intent = new Intent("onConfigurationChanged");
+        intent.putExtra("newConfig", newConfig);
+        this.sendBroadcast(intent);
     }
 }

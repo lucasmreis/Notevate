@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
-    padding: 10
+    padding: 16
   },
   text: {
     fontFamily: 'SourceSansPro-Regular',

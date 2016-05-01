@@ -14,7 +14,7 @@ export default ({ onPress }) => (
     background={TouchableNativeFeedback.Ripple(colors.darkerSubmitAction, false)}>
 
     <View style={styles.action}>
-      <Image source={require('./images/check.png')} />
+      <Image source={require('./images/check.png')} style={styles.image} />
     </View>
 
   </TouchableNativeFeedback>
@@ -25,6 +25,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.submitAction,
     alignItems: 'center',
     alignSelf: 'stretch',
-    padding: 10
+    padding: 16,
+    height: 55
+  },
+  image: {
+    height: 24
   }
 })

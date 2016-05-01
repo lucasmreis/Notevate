@@ -50,12 +50,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.background,
-    padding: 20
+    padding: 16
   },
   text: {
     fontFamily: 'Merriweather-Light',
     fontWeight: '300',
-    fontSize: 28,
+    fontSize: 24,
     color: colors.fonts
   }
 })

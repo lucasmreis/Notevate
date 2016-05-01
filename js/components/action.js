@@ -12,7 +12,7 @@ import colors from './colors'
 
 const theme = type =>
   type === 'add'
-    ? { color: colors.addAction, icon: require('./images/pencil.png'), height: 120 }
+    ? { color: colors.addAction, icon: require('./images/pencil.png'), height: 110 }
     : { color: colors.removeAction, icon: require('./images/trash.png'), height: Dimensions.get('window').height / 4 }
 
 export default ({ type }) => {

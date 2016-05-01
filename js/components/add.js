@@ -47,6 +47,7 @@ export default React.createClass({
 
         <View style={styles.textContainer}>
           <TextInput
+            autoCapitalize='sentences'
             placeholder={messages.add_placeholder}
             placeholderTextColor={colors.placeholder}
             selectionColor={colors.placeholder}

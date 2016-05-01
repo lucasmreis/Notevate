@@ -4,14 +4,10 @@ import React, { Alert, Navigator } from 'react-native'
 
 import { Answers } from 'react-native-fabric'
 
-import SwipeActions from 'swipe-actions'
-
+import SwipeActions from './swipe-actions'
 import Action from './action'
 import Pager from './pager'
 import Add from './add'
-
-const upperNode = <Action type={'add'} />
-const lowerNode = <Action type={'remove'} />
 
 const upperAction = navigator => () => {
   navigator.push({ screen: 'add' })
@@ -38,7 +34,11 @@ const lowerAction = ({ dispatch }) => ({ sentences }) => {
 }
 
 const renderScene = props => ({ screen }, navigator) => {
+  const upperNode = <Action type={'add'} />
+  const lowerNode = <Action type={'remove'} />
+
   const hasSentence = props.state.sentences && props.state.sentences.length > 0
+
   return screen === 'add'
     ? <Add text={props.state.toAdd} dispatch={props.dispatch} navigator={navigator} />
     : <SwipeActions

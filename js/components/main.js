@@ -9,6 +9,8 @@ import Action from './action'
 import Pager from './pager'
 import Add from './add'
 
+import messages from '../messages'
+
 const upperAction = navigator => () => {
   navigator.push({ screen: 'add' })
   Answers.logCustom('Add button clicked', {})
@@ -23,11 +25,11 @@ const lowerAction = ({ dispatch }) => ({ sentences }) => {
   if (sentences && sentences.length > 0) {
     Answers.logCustom('Remove button clicked', {})
     Alert.alert(
-      'Remove',
-      'Are you sure?',
+      messages.delete_title,
+      messages.delete_body,
       [
-        { text: 'Cancel', onPress: () => {}, style: 'cancel' },
-        { text: 'OK', onPress: onPressRemove(dispatch) },
+        { text: 'CANCEL', onPress: () => {}, style: 'cancel' },
+        { text: 'DELETE', onPress: onPressRemove(dispatch) },
       ]
     )
   }

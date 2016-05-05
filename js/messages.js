@@ -1,4 +1,14 @@
+const default_page = `Welcome to Notevate.
+
+Swipe down to create your motivational note (a great quote, a warm-and-fuzzy memory or a nudge to keep you on track) and swipe up to delete it.
+
+♥
+
+The Notevate Team.`
+
 export default {
-  default_page: 'Hey there - welcome to Notevate! Swipe from top to bottom to start writing your first happy thought, and swipe from bottom to top to delete it.',
-  add_placeholder: 'What keeps you motivated?'
+  default_page,
+  add_placeholder: 'What keeps you motivated?',
+  delete_title: 'Delete this note?',
+  delete_body: 'Your note will be permanently deleted.'
 }

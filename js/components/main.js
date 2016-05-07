@@ -15,7 +15,7 @@ const upperAction = navigator => () => {
   navigator.push({ screen: 'add' })
   Answers.logCustom('Add button clicked', {})
 }
-
+ 
 const onPressRemove = dispatch => () => {
   dispatch({ type: 'REMOVE' })
   Answers.logCustom('Sentence Removed', {})

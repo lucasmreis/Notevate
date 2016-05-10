@@ -1,5 +1,5 @@
 const white = '#fafafa'
-const darkWhite = 'rgba(0,0,0,0.38)'
+const darkWhite = 'rgba(0,0,0,0.54)'
 
 const tomato = '#f44336'
 

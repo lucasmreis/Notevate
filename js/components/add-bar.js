@@ -14,7 +14,9 @@ export default ({ onPress }) => (
     background={TouchableNativeFeedback.Ripple(colors.darkerBackground, false)}>
 
     <View style={styles.action}>
-      <Image source={require('./images/back-arrow.png')} style={styles.image} />
+      <View style={styles.imageContainer}>
+        <Image source={require('./images/back-arrow.png')} style={styles.image} />
+      </View>
     </View>
 
   </TouchableNativeFeedback>
@@ -26,7 +28,13 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     padding: 16
   },
+  imageContainer: {
+    height: 24,
+    padding: 4
+  },
   image: {
-    height: 16
+    height: 16,
+    width: 16,
+    opacity: 0.54
   }
 })

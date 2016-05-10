@@ -2,8 +2,7 @@ const default_page = `Welcome to Notevate.
 
 Swipe down to create your motivational note (a great quote, a warm-and-fuzzy memory or a nudge to keep you on track) and swipe up to delete it.
 
-♥
-
+Love,
 The Notevate Team.`
 
 export default {

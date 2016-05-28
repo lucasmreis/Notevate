@@ -5,6 +5,7 @@ import React, { Alert, Navigator } from 'react-native'
 import { Answers } from 'react-native-fabric'
 
 import SwipeActions from './swipe-actions'
+import Onboarding from './onboarding'
 import Action from './action'
 import Pager from './pager'
 import Add from './add'
@@ -15,7 +16,7 @@ const upperAction = navigator => () => {
   navigator.push({ screen: 'add' })
   Answers.logCustom('Add button clicked', {})
 }
- 
+
 const onPressRemove = dispatch => () => {
   dispatch({ type: 'REMOVE' })
   Answers.logCustom('Sentence Removed', {})
@@ -36,14 +37,24 @@ const lowerAction = ({ dispatch }) => ({ sentences }) => {
 }
 
 const renderScene = props => ({ screen }, navigator) => {
-  const upperNode = <Action type={'add'} />
-  const lowerNode = <Action type={'remove'} />
+  const upperNode =
+    <Action type={'add'} />
 
-  const hasSentence = props.state.sentences && props.state.sentences.length > 0
+  const lowerNode =
+    <Action type={'remove'} />
 
-  return screen === 'add'
-    ? <Add text={props.state.toAdd} dispatch={props.dispatch} navigator={navigator} />
-    : <SwipeActions
+  const hasSentence =
+    props.state.sentences &&
+    props.state.sentences.length > 0
+
+  if (screen === 'add') {
+    return <Add text={props.state.toAdd} dispatch={props.dispatch} navigator={navigator} />
+
+  } else if (screen === 'onboarding' || !hasSentence) {
+    return <Onboarding navigator={navigator} />
+
+  } else {
+    return <SwipeActions
         actionParameter={props.state}
         upperNode={upperNode}
         lowerNode={hasSentence ? lowerNode : null}
@@ -51,6 +62,7 @@ const renderScene = props => ({ screen }, navigator) => {
         lowerAction={lowerAction(props)}>
         <Pager {...props} />
       </SwipeActions>
+  }
 }
 
 export default props => (

@@ -46,7 +46,7 @@ export default React.createClass({
     }
   },
   async componentDidMount() {
-    codePush.sync();
+    // codePush.sync();
     const initialState = await this.load()
     this.setState(initialState)
     this.renderLoop()

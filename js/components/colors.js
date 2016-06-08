@@ -1,5 +1,6 @@
 const white = '#fafafa'
-const darkWhite = 'rgba(0,0,0,0.54)'
+const lightGray = 'rgba(0,0,0,0.12)'
+const gray = 'rgba(0,0,0,0.54)'
 
 const tomato = '#f44336'
 
@@ -12,15 +13,17 @@ const black = 'rgba(0,0,0,0.87)'
 
 export default {
   background: white,
-  darkerBackground: darkWhite,
+  darkerBackground: gray,
 
   actionIcons: white,
   fonts: black,
-  placeholder: darkWhite,
+  placeholder: gray,
 
   addAction: azure,
   removeAction: tomato,
 
   submitAction: booger,
-  darkerSubmitAction: darkBooger
+  darkerSubmitAction: darkBooger,
+
+  onboardDots: lightGray
 }

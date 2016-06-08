@@ -2,9 +2,10 @@ import React, {
   Text,
   View,
   ViewPagerAndroid,
-  StyleSheet,
-  TouchableNativeFeedback
+  StyleSheet
 } from 'react-native'
+
+import Page from './page'
 
 import colors from '../colors'
 
@@ -14,23 +15,16 @@ export default React.createClass({
       style={styles.viewPager}
       initialPage={0}>
 
-      <View style={styles.pageStyle}>
-        <Text>First page</Text>
-      </View>
-
-      <View style={styles.pageStyle}>
-        <Text>Second page</Text>
-      </View>
-
-      <View style={styles.pageStyle}>
-        <Text>Third page</Text>
-      </View>
+      {[0, 1, 2].map(i =>
+        <View key={i}>
+          <Page index={i} />
+        </View>)}
 
     </ViewPagerAndroid>
   }
 })
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   viewPager: {
     flex: 1
   },

@@ -36,3 +36,5 @@ npm-debug.log
 # Key
 #
 android/app/notevate-release-key.keystore
+
+.vscode

@@ -41,6 +41,8 @@ export default React.createClass({
       const action: Action = await actionsChannel.take()
       log(action)
       const newState = update(this.state, action)
+      log('---')
+      log(newState)
       this.setState(newState)
       this.save(newState)
     }

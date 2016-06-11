@@ -1,11 +1,16 @@
 import React, {
   Text,
   View,
-  StyleSheet
+  StyleSheet,
+  Image,
+  TouchableNativeFeedback
 } from 'react-native'
 
 import messages from '../../messages'
 import colors from '../colors'
+
+import NextButton from './next-button'
+import SubmitAction from '../submit-action'
 
 const dotStyle = (selected, current) => {
   if (selected === current) {
@@ -16,16 +21,26 @@ const dotStyle = (selected, current) => {
 }
 
 export default React.createClass({
+  navButton(index) {
+    if (index === 0 || index === 1) {
+      return <NextButton goToPage={this.props.goToPage} toIndex={index + 1} />
+    } else {
+      return <SubmitAction onPress={() => this.props.navigator.push({ screen: 'add' })} />
+    }
+  },
+
   render() {
-    const { index } = this.props
+    const { index, src } = this.props
     return <View style={styles.pageStyle}>
-      <View>
-        <Text>IMAGE</Text>
+      <View style={styles.imageContainer}>
+        <Image source={src} style={styles.image} />
       </View>
 
-      <Text style={styles.text}>
-        {messages.onboarding[index]}
-      </Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>
+          {messages.onboarding[index]}
+        </Text>
+      </View>
 
       <View style={styles.dots}>
         <View style={dotStyle(index, 0)} />
@@ -33,9 +48,7 @@ export default React.createClass({
         <View style={dotStyle(index, 2)} />
       </View>
 
-      <View>
-        <Text>BUTTON</Text>
-      </View>
+      {this.navButton(index)}
     </View>
   }
 })
@@ -46,15 +59,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between'
   },
+  textContainer: {
+    height: 160,
+    // borderWidth: 1,
+    // borderColor: 'red'
+  },
   text: {
     fontFamily: 'SourceSansPro-Regular',
     fontSize: 24,
     color: colors.fonts,
     textAlign: 'center',
-    margin: 16
+    marginHorizontal: 16,
+    marginVertical: 8
   },
   dots: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    // borderWidth: 1,
+    // borderColor: 'red',
+    height: 54,
+    alignItems: 'center'
   },
   dot: {
     width: 10,
@@ -66,5 +89,21 @@ const styles = StyleSheet.create({
   },
   selected: {
     backgroundColor: colors.onboardDots
+  },
+  button: {
+    height: 55,
+    backgroundColor: colors.onboardOk,
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center'
+    // borderWidth: 1,
+    // borderColor: 'red'
+  },
+  imageContainer: {
+    // borderWidth: 1,
+    // borderColor: 'red'
+  },
+  image: {
+    height: 299
   }
 })

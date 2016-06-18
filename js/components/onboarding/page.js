@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     borderColor: colors.onboardDots
   },
   selected: {
+    borderWidth: 0,
     backgroundColor: colors.onboardDots
   },
   button: {

@@ -1,5 +1,6 @@
 const white = '#fafafa'
 const lightGray = 'rgba(0,0,0,0.12)'
+const mediumLightGray = 'rgba(0,0,0,0.38)'
 const gray = 'rgba(0,0,0,0.54)'
 
 const tomato = '#f44336'
@@ -20,7 +21,7 @@ export default {
 
   actionIcons: white,
   fonts: black,
-  placeholder: gray,
+  placeholder: mediumLightGray,
 
   addAction: azure,
   removeAction: tomato,

@@ -65,12 +65,13 @@ const styles = StyleSheet.create({
     // borderColor: 'red'
   },
   text: {
-    fontFamily: 'SourceSansPro-Regular',
+    fontFamily: 'SourceSansPro-Light',
     fontSize: 24,
     color: colors.fonts,
     textAlign: 'center',
     marginHorizontal: 16,
-    marginVertical: 8
+    marginTop: 16,
+    marginBottom: 32
   },
   dots: {
     flexDirection: 'row',

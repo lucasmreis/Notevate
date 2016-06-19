@@ -45,7 +45,6 @@ export default React.createClass({
 
   navButton(index) {
     if (index === 0 || index === 1) {
-      console.log('------', index)
       return <NextButton goToPage={this.goToPage} toIndex={index + 1} />
     } else {
       return <SubmitAction onPress={() => this.props.navigator.push({ screen: 'add' })} />

@@ -9,26 +9,7 @@ import React, {
 import messages from '../../messages'
 import colors from '../colors'
 
-import NextButton from './next-button'
-import SubmitAction from '../submit-action'
-
-const dotStyle = (selected, current) => {
-  if (selected === current) {
-    return [styles.dot, styles.selected]
-  } else {
-    return styles.dot
-  }
-}
-
 export default React.createClass({
-  navButton(index) {
-    if (index === 0 || index === 1) {
-      return <NextButton goToPage={this.props.goToPage} toIndex={index + 1} />
-    } else {
-      return <SubmitAction onPress={() => this.props.navigator.push({ screen: 'add' })} />
-    }
-  },
-
   render() {
     const { index, src } = this.props
     return <View style={styles.pageStyle}>
@@ -42,13 +23,6 @@ export default React.createClass({
         </Text>
       </View>
 
-      <View style={styles.dots}>
-        <View style={dotStyle(index, 0)} />
-        <View style={dotStyle(index, 1)} />
-        <View style={dotStyle(index, 2)} />
-      </View>
-
-      {this.navButton(index)}
     </View>
   }
 })
@@ -72,25 +46,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginTop: 16,
     marginBottom: 32
-  },
-  dots: {
-    flexDirection: 'row',
-    // borderWidth: 1,
-    // borderColor: 'red',
-    height: 54,
-    alignItems: 'center'
-  },
-  dot: {
-    width: 10,
-    height: 10,
-    margin: 5,
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: colors.onboardDots
-  },
-  selected: {
-    borderWidth: 0,
-    backgroundColor: colors.onboardDots
   },
   button: {
     height: 55,

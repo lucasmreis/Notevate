@@ -31,7 +31,9 @@ const styles = StyleSheet.create({
   pageStyle: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-around',
+    // borderWidth: 1,
+    // borderColor: 'red'
   },
   textContainer: {
     height: 160,
@@ -57,6 +59,8 @@ const styles = StyleSheet.create({
     // borderColor: 'red'
   },
   imageContainer: {
+    alignSelf: 'stretch',
+    alignItems: 'center',
     // borderWidth: 1,
     // borderColor: 'red'
   },

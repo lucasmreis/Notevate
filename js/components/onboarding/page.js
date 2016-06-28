@@ -23,6 +23,7 @@ export default React.createClass({
         </Text>
       </View>
 
+      <View style={styles.hidden}></View>
     </View>
   }
 })
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
   pageStyle: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     // borderWidth: 1,
     // borderColor: 'red'
   },
@@ -66,5 +67,8 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 299
+  },
+  hidden: {
+
   }
 })
